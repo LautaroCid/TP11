@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Procesar Archivos</title>
+</head>
+<body>
+  <input type="file" id="archivoInput" accept=".in">
+  <button onclick="LeerArchivo()">Leer Archivo</button>
+
+  <script>
+    function LeerArchivo() {
+      const archivoInput = document.getElementById('archivoInput');
+      const archivo = archivoInput.files[0];
+
+      if (!archivo) {
+        alert('Por favor selecciona un archivo.');
+        return;
+      }
+
+      const lector = new FileReader();
+
+      lector.onload = function(evento) {
+        const dato = evento.target.result.trim();
+        console.log('El dato leído del archivo es:', dato);
+        MostrarDato(dato);
+      }
+
+      lector.readAsText(archivo);
+    }
+
+    function MostrarDato(dato) {
+      const resultado = document.getElementById('resultado');
+      resultado.textContent = dato;
+      f=[''],e=[],d=0,c=1;
+      str=(dato);
+      //alert(str);
+      for(i=0;i<str.length;i++){
+        if(str.charAt(i)==' '){
+          d=d+1;
+          f[d]='';
+        }else{
+          f[d]=f[d]+(str.charAt(i));
+          //alert(f)
+        }
+      }
+      if(f.length==1 && f[0]<=10){
+	       alert('subtarea 1 fallida');
+	      }
+      for(i=0;i<f.length;i++){
+        if(f[i]<=10){
+	       alert('subtarea 2 fallida');
+       }
+     }
+       if(f.length==1 && f[0]<=20){
+ 	       alert('subtarea 3 fallida');
+ 	      }
+       for(i=0;i<f.length;i++){
+         if(f[i]<=20){
+ 	       alert('subtarea 4 fallida');
+        }
+      }
+        if(f.length==1 && f[0]<=100){
+  	       alert('subtarea 5 fallida');
+  	      }
+        for(i=0;i<f.length;i++){
+          if(f[i]<=100){
+  	       alert('subtarea 6 fallida');
+         }
+      }
+      if(f.length==1){
+        alert('subtarea 7 fallida');
+      }
+      let res,res2;
+      d=0;
+      //alert(f);
+      for(i=0;i<f.length;i++){
+        var str = f[i].toString();
+        res = str.charAt(str.length - 1);
+        res2 = str. substring(0, 1)
+        //alert(res);
+        //alert(res2);
+        if(res==res2){
+            e[d]=f[i];
+            d=d+1;
+        }
+      }
+
+      alert("El archivo in es: "+f);
+      alert("El archivo out sera: "+e);
+
+
+      const guardarEnlace = document.createElement('a');
+      guardarEnlace.textContent = 'Guardar como datos.out';
+      guardarEnlace.href = 'data:text/plain;charset=utf-8,' + encodeURIComponent(e);
+      guardarEnlace.download = 'datos.out';
+      resultado.appendChild(guardarEnlace);
+  }
+  </script>
+
+  <div id="resultado"></div>
+</body>
+</html>
